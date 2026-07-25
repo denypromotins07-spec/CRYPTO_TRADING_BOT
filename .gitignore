@@ -2,9 +2,9 @@
 # Compiled and build artifacts
 *.pyc
 __pycache__/
+*.rs.bk
 *.o
 *.obj
-*.class
 *.exe
 *.dll
 *.so
@@ -18,11 +18,13 @@ node_modules/
 target/
 .mypy_cache/
 .pytest_cache/
+.cargo/
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
+*.swo
 
 # Environment
 .env
@@ -38,8 +40,7 @@ coverage/
 htmlcov/
 .coverage
 
-# Build systems
-.gradle/
-dist/
-build/
+# System files
+.DS_Store
+Thumbs.db
 ```
