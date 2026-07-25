@@ -5,11 +5,10 @@ __pycache__/
 *.rs.bk
 *.o
 *.obj
-*.exe
-*.dll
 *.so
-*.a
-*.out
+*.dll
+*.exe
+*.class
 
 # Dependencies
 .venv/
@@ -18,7 +17,7 @@ node_modules/
 target/
 .mypy_cache/
 .pytest_cache/
-.cargo/
+.coverage
 
 # Logs and temp files
 *.log
@@ -35,12 +34,9 @@ target/
 .vscode/
 .idea/
 
-# Coverage
+# Build and distribution
+dist/
+build/
 coverage/
 htmlcov/
-.coverage
-
-# System files
-.DS_Store
-Thumbs.db
 ```
