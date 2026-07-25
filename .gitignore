@@ -1,45 +1,72 @@
 ```
-# Compiled and build artifacts
-*.pyc
+# Python
 __pycache__/
-*.rs.bk
-*.o
-*.obj
-*.exe
-*.dll
-*.so
-*.a
-*.out
-
-# Dependencies
-.venv/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
 venv/
-node_modules/
-target/
-.mypy_cache/
-.pytest_cache/
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-
-# Environment
+.venv/
+.ENV
 .env
-.env.local
-*.env.*
+*.env
+.env.*
+.venv.bak/
+venv.bak/
 
-# Editors
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.log
+
+# IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*.tmp
 
-# Coverage
-coverage/
-htmlcov/
-.coverage
+# Distribution / packaging
+*.tar.gz
+*.whl
+*.zip
+*.egg
 
-# System files
-.DS_Store
-Thumbs.db
+# Pytest
+.pytest_cache/
+pytest_debug.log
+
+# MyPy
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Rust (since there are .rs files)
+target/
+Cargo.lock
+**/*.rs.bk
 ```
