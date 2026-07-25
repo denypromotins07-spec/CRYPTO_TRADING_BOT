@@ -1,14 +1,13 @@
-```rust
+```
 # Compiled and build artifacts
 *.pyc
 __pycache__/
 *.o
 *.obj
 *.class
-*.exe
-*.dll
 *.so
-*.a
+*.dll
+*.exe
 *.out
 
 # Dependencies
@@ -16,11 +15,9 @@ __pycache__/
 venv/
 node_modules/
 target/
+.gradle/
 .mypy_cache/
 .pytest_cache/
-.coverage
-coverage/
-htmlcov/
 
 # Logs and temp files
 *.log
@@ -31,25 +28,18 @@ htmlcov/
 # Environment
 .env
 .env.local
-.env.*
+*.env.*
 
 # Editors
 .vscode/
 .idea/
 
-# Build and distribution
-dist/
-build/
-*.egg-info/
-.tox/
-.nox/
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
-# OS specific
+# System files
 .DS_Store
 Thumbs.db
-
-# Rust/Cargo (since there are .rs files)
-Cargo.lock
-target/
-**/*.rs.bk
 ```
