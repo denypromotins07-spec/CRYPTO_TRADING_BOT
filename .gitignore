@@ -1,45 +1,66 @@
 ```
-# Compiled and build artifacts
-*.pyc
+# Python
 __pycache__/
-*.rs.bk
-*.o
-*.obj
-*.exe
-*.dll
+*.py[cod]
+*$py.class
 *.so
-*.a
-*.out
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Dependencies
-.venv/
+# Virtual environments
 venv/
-node_modules/
-target/
-.mypy_cache/
-.pytest_cache/
+env/
+ENV/
+.venv/
+.env/
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-
-# Environment
-.env
-.env.local
-.env.*
-
-# Editors
+# IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*.tmp
 
-# Coverage reports
+# Logs
+*.log
+
+# Coverage
+.coverage
 coverage/
 htmlcov/
-.coverage
 
-# Build outputs
-dist/
-build/
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Rust (for market structure.rs and smc_detector.rs)
+target/
+Cargo.lock
+
+# ML/DL
+.mlruns/
+wandb/
 ```
