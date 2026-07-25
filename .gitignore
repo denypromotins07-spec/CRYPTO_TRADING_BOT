@@ -1,61 +1,48 @@
-```
-# Python
-__pycache__/
+```rust
+# Compiled and build artifacts
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-*.tmp
-*.swp
-*~
-.DS_Store
-Thumbs.db
-
-# Rust
-target/
-Cargo.lock
+__pycache__/
+*.rs.bk
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.class
+*.out
 
 # Dependencies
+.venv/
+venv/
 node_modules/
+target/
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
 
-# Editors
-.vscode/
-.idea/
+# Logs and temp files
+*.log
+*.tmp
 *.swp
 *.swo
 
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
-# Build artifacts
-build/
+# Editors
+.vscode/
+.idea/
+
+# Build and distribution
 dist/
-*.so
-*.dylib
-*.dll
-*.exe
-*.out
+build/
+*.egg-info/
 
-# Testing
-.pytest_cache/
-.mypy_cache/
-htmlcov/
-coverage/
+# Rust specific
+Cargo.lock
+*.dSYM/
 ```
