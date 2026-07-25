@@ -1,72 +1,68 @@
 ```
-# Python
-__pycache__/
+# Compiled and build artifacts
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.env
-*.env
-.env.*
-.venv.bak/
-venv.bak/
-
-# Build artifacts
+__pycache__/
+*.class
+*.o
+*.obj
+*.out
 build/
 dist/
-*.egg-info/
-.eggs/
+target/
 
-# Logs
+# Dependencies
+.venv/
+venv/
+node_modules/
+.mypy_cache/
+.pytest_cache/
+.gradle/
+
+# Logs and temp files
 *.log
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Testing
-.coverage
-htmlcov/
-.tox/
-.nox/
-coverage.xml
-*.cover
-*.log
-
-# IDE
-.vscode/
-.idea/
+*.tmp
 *.swp
 *.swo
-*.tmp
 
-# Distribution / packaging
-*.tar.gz
-*.whl
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Compression and archives
 *.zip
-*.egg
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 
-# Pytest
-.pytest_cache/
-pytest_debug.log
+# System files
+.DS_Store
+Thumbs.db
 
-# MyPy
-.mypy_cache/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Rust (since there are .rs files)
-target/
-Cargo.lock
-**/*.rs.bk
+# Coverage
+coverage/
+htmlcov/
+.coverage
 ```
