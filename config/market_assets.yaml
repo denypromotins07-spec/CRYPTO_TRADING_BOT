@@ -1,0 +1,223 @@
+# =============================================================================
+# ZAID PERSONAL CRYPTO TRADING BOT - MARKET ASSETS CONFIGURATION
+# =============================================================================
+# Maps order books, tick sizes, funding rates, and exchange-specific parameters
+# Optimized for O(1) lookup times via hash-based YAML structure
+# =============================================================================
+
+metadata:
+  version: "1.0.0"
+  last_updated: "2024-01-01"
+  exchange: "binance"
+  domains_integrated:
+    - Market Microstructure
+    - Order Book Dynamics
+    - Tick Size Analysis
+    - Funding Rate Arbitrage
+    - Liquidity Modeling
+
+# Global market settings
+global_settings:
+  base_currency: "USDT"
+  quote_precision: 8
+  quantity_precision: 8
+  min_notional_value: 10.0  # Minimum order value in USDT
+  max_notional_value: 1000000.0  # Maximum order value in USDT
+  
+# Asset-specific configurations
+assets:
+  
+  BTC:
+    name: "Bitcoin"
+    class: "crypto"
+    trading_pairs:
+      - symbol: "BTCUSDT"
+        base: "BTC"
+        quote: "USDT"
+        active: true
+        
+        # Order book configuration
+        order_book:
+          tick_size: 0.01  # Price increment
+          lot_size: 0.00001  # Quantity increment
+          min_qty: 0.00001
+          max_qty: 9000.0
+          min_notional: 10.0
+          
+        # Depth levels for analysis
+        depth_levels:
+          bid_levels: 20
+          ask_levels: 20
+          refresh_rate_ms: 100
+          
+        # Funding rate (for perpetual futures)
+        funding_rate:
+          enabled: true
+          interval_hours: 8
+          max_rate_threshold: 0.0005
+          min_rate_threshold: -0.0005
+          
+        # Liquidity metrics
+        liquidity:
+          avg_daily_volume_usd: 5000000000
+          avg_spread_bps: 1.0
+          market_impact_coefficient: 0.0001
+          
+        # Trading hours (24/7 for crypto)
+        trading_hours:
+          open: "00:00"
+          close: "23:59"
+          timezone: "UTC"
+          
+    risk_params:
+      max_position_size_btc: 1.0
+      max_position_value_usd: 100000
+      volatility_24h_avg: 0.03
+      
+  ETH:
+    name: "Ethereum"
+    class: "crypto"
+    trading_pairs:
+      - symbol: "ETHUSDT"
+        base: "ETH"
+        quote: "USDT"
+        active: true
+        
+        # Order book configuration
+        order_book:
+          tick_size: 0.01
+          lot_size: 0.0001
+          min_qty: 0.0001
+          max_qty: 90000.0
+          min_notional: 10.0
+          
+        # Depth levels for analysis
+        depth_levels:
+          bid_levels: 20
+          ask_levels: 20
+          refresh_rate_ms: 100
+          
+        # Funding rate (for perpetual futures)
+        funding_rate:
+          enabled: true
+          interval_hours: 8
+          max_rate_threshold: 0.0005
+          min_rate_threshold: -0.0005
+          
+        # Liquidity metrics
+        liquidity:
+          avg_daily_volume_usd: 2000000000
+          avg_spread_bps: 1.5
+          market_impact_coefficient: 0.00015
+          
+        # Trading hours (24/7 for crypto)
+        trading_hours:
+          open: "00:00"
+          close: "23:59"
+          timezone: "UTC"
+          
+    risk_params:
+      max_position_size_eth: 10.0
+      max_position_value_usd: 75000
+      volatility_24h_avg: 0.04
+      
+  SOL:
+    name: "Solana"
+    class: "crypto"
+    trading_pairs:
+      - symbol: "SOLUSDT"
+        base: "SOL"
+        quote: "USDT"
+        active: true
+        
+        # Order book configuration
+        order_book:
+          tick_size: 0.0001
+          lot_size: 0.01
+          min_qty: 0.01
+          max_qty: 900000.0
+          min_notional: 10.0
+          
+        # Depth levels for analysis
+        depth_levels:
+          bid_levels: 20
+          ask_levels: 20
+          refresh_rate_ms: 100
+          
+        # Funding rate (for perpetual futures)
+        funding_rate:
+          enabled: true
+          interval_hours: 8
+          max_rate_threshold: 0.00075
+          min_rate_threshold: -0.00075
+          
+        # Liquidity metrics
+        liquidity:
+          avg_daily_volume_usd: 500000000
+          avg_spread_bps: 2.0
+          market_impact_coefficient: 0.0002
+          
+        # Trading hours (24/7 for crypto)
+        trading_hours:
+          open: "00:00"
+          close: "23:59"
+          timezone: "UTC"
+          
+    risk_params:
+      max_position_size_sol: 500.0
+      max_position_value_usd: 50000
+      volatility_24h_avg: 0.06
+      
+  USDT:
+    name: "Tether"
+    class: "stablecoin"
+    trading_pairs:
+      - symbol: "USDTUSD"
+        base: "USDT"
+        quote: "USD"
+        active: false  # Reference only, not traded directly
+        
+        # Stablecoin peg monitoring
+        peg_monitoring:
+          target_price: 1.0
+          deviation_threshold: 0.001
+          
+    risk_params:
+      reserve_requirement: true
+      min_reserve_percent: 10.0
+
+# Cross-asset correlation matrix (30-day rolling)
+correlation_matrix:
+  BTC_ETH: 0.85
+  BTC_SOL: 0.72
+  ETH_SOL: 0.78
+  
+# Market regime thresholds
+market_regimes:
+  trending:
+    adx_threshold: 25
+    direction_strength: 0.6
+  ranging:
+    adx_threshold: 20
+    channel_width_percent: 2.0
+  volatile:
+    atr_multiplier: 2.0
+    volume_spike_factor: 3.0
+    
+# Execution quality metrics
+execution_quality:
+  target_fill_rate: 0.99
+  max_slippage_tolerance_bps: 5
+  order_timeout_seconds: 30
+  retry_attempts: 3
+  
+# WebSocket subscription configuration
+websocket_config:
+  streams:
+    - "trade"
+    - "depth20"
+    - "kline_1m"
+    - "ticker"
+  reconnect_delay_seconds: 5
+  heartbeat_interval_seconds: 30
+  buffer_size: 1000

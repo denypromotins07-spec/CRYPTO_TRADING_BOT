@@ -1,0 +1,46 @@
+```
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Logs
+*.log
+logs/
+
+# Dependencies
+venv/
+.venv/
+pip-log.txt
+pipenv.lock
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Rust (Cargo)
+target/
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+.coverage
+htmlcov/
+coverage/
+```
