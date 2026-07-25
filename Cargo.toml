@@ -1,0 +1,71 @@
+[package]
+name = "zaid_crypto_bot"
+version = "0.1.0"
+edition = "2021"
+authors = ["ZAID Personal Crypto Trading Bot Team"]
+description = "Microsecond execution engine for high-frequency crypto trading"
+
+# Optimized for AMD Ryzen AI 5 with strict 8GB RAM constraint
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+opt-level = 1
+debug = false
+
+[dependencies]
+# Async Runtime - Tokio for microsecond-level concurrency
+tokio = { version = "1.35", features = ["full", "rt-multi-thread", "sync", "time", "macros"] }
+
+# High-performance serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Order book and market data structures
+rust_decimal = { version = "1.33", features = ["serde"] }
+
+# Memory-mapped files for non-blocking I/O
+memmap2 = "0.9"
+
+# Lock-free data structures for concurrent access
+crossbeam = "0.8"
+dashmap = "5.5"
+
+# Time handling with nanosecond precision
+chrono = { version = "0.4", features = ["serde"] }
+instant = "0.1"
+
+# Logging without blocking
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["json"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# System monitoring
+sysinfo = "0.30"
+
+# Binary serialization for fast disk writes
+bincode = "1.3"
+
+# Optional: Python bindings via PyO3 for hybrid execution
+[dependencies.pyo3]
+version = "0.20"
+features = ["extension-module"]
+
+[lib]
+name = "zaid_crypto_bot"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "trade_logger"
+path = "src/bin/trade_logger.rs"
+
+[[bin]]
+name = "system_health"
+path = "src/bin/system_health.rs"

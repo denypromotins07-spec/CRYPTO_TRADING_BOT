@@ -1,0 +1,39 @@
+# ZAID PERSONAL CRYPTO TRADING BOT - Requirements
+# High-Frequency Trading Dependencies for Multi-Asset Algorithmic Trading
+# Optimized for AMD Ryzen AI 5 with 16GB RAM (8GB max usage constraint)
+
+# Core Trading Framework
+nautilus-trader>=1.170.0  # High-performance algorithmic trading platform
+ccxt>=4.2.0              # Cryptocurrency exchange API connector
+asyncio-throttle>=1.0.2  # Rate limiting for API calls
+
+# Parallel Processing & Concurrency
+ray>=2.9.0               # Distributed computing for parallel asset trading
+asyncio>=3.4.3           # Async I/O for non-blocking operations
+aiomultiprocess>=0.9.0   # Async multiprocessing
+
+# Data Processing & Analysis
+numpy>=1.26.0            # Numerical computing with C-extensions
+pandas>=2.1.0            # Time-series data manipulation
+polars>=0.19.0           # Fast DataFrame library (Rust-backed)
+
+# Machine Learning & Pattern Recognition
+scikit-learn>=1.3.0      # Lightweight ML models for regime detection
+numba>=0.58.0            # JIT compilation for numerical functions
+
+# Database & Storage
+sqlite3                  # Built-in lightweight database
+aiosqlite>=0.19.0        # Async SQLite support
+redis>=5.0.0             # In-memory caching for O(1) lookups
+
+# Monitoring & Logging
+psutil>=5.9.0            # System monitoring (RAM, CPU)
+py-spy>=0.3.14           # Sampling profiler for Python
+
+# Security & Environment
+python-dotenv>=1.0.0     # Environment variable management
+cryptography>=41.0.0     # API key encryption
+
+# Testing & Quality
+pytest>=7.4.0            # Testing framework
+pytest-asyncio>=0.21.0   # Async test support
