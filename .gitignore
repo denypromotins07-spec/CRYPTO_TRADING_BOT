@@ -1,67 +1,21 @@
 ```
-# Compiled and build artifacts
+# Compiled Python files
 *.pyc
 __pycache__/
-*.rs.bk
-*.o
-*.obj
-*.so
-*.dll
-*.exe
-*.class
-*.out
 
-# Dependencies
-.venv/
-venv/
-node_modules/
+# Rust compilation artifacts
 target/
-.mypy_cache/
-.pytest_cache/
-.coverage
-coverage/
-htmlcov/
 
-# Logs and temp files
+# Logs
 *.log
-*.tmp
-*.swp
-*.swo
 
-# Environment
+# Environment files
 .env
 .env.local
 *.env.*
 
-# Editors
-.vscode/
-.idea/
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+# Dependencies
+node_modules/
+venv/
+.venv/
 ```
