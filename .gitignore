@@ -1,37 +1,36 @@
 ```
-# Compiled Python files
-*.pyc
+# Python
 __pycache__/
-
-# Rust compilation artifacts
-target/
-
-# Dependencies
-.venv/
+*.pyc
+*.pyo
+*.pyd
+.Python
 venv/
-node_modules/
-
-# Logs and temporary files
-*.log
-*.tmp
-
-# Environment files
+.venv/
 .env
 .env.local
-*.env.*
+.env.*
+
+# Rust
+target/
+Cargo.lock
+
+# Logs and temp files
+*.log
+*.tmp
 
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Coverage reports
+# Coverage
+.coverage
 coverage/
 htmlcov/
-.coverage
 
-# MyPy cache
-.mypy_cache/
-
-# Pytest cache
+# Testing
 .pytest_cache/
+.mypy_cache/
 ```
