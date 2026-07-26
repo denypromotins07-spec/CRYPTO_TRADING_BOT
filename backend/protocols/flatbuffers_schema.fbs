@@ -1,0 +1,251 @@
+// ZAID PERSONAL CRYPTO TRADING BOT - Stage 24
+// FlatBuffers Schema for Ultra-Compact Tick Data Serialization
+// Optimized for AVX2 SIMD alignment and zero-copy deserialization
+// Memory boundary aligned for 32-byte cache lines
+
+namespace zaid.trading;
+
+// Root table for batch processing of tick data
+table TickBatch {
+  symbol: string;
+  exchange: string;
+  timestamp_ns: long;  // Nanosecond precision
+  ticks: [Tick];
+  sequence_start: ulong;
+  sequence_end: ulong;
+  checksum: uint;
+}
+
+// Individual tick data with precise memory layout
+// Total size: 64 bytes (cache-line aligned)
+table Tick {
+  timestamp_ns: long;       // 8 bytes: Nanosecond timestamp
+  price: ulong;             // 8 bytes: Price as fixed-point integer (price * 10^8)
+  quantity: ulong;          // 8 bytes: Quantity as fixed-point integer
+  side: Side;               // 1 byte: Buy/Sell indicator
+  order_type: OrderType;    // 1 byte: Market/Limit/Stop
+  aggressor_side: Side;     // 1 byte: Taker side for trade classification
+  _padding: uchar;          // 1 byte: Alignment padding
+  sequence_id: ulong;       // 8 bytes: Exchange sequence ID
+  trade_id: ulong;          // 8 bytes: Unique trade identifier
+  buyer_order_id: ulong;    // 8 bytes: Buyer order ID (optional)
+  seller_order_id: ulong;   // 8 bytes: Seller order ID (optional)
+  flags: ushort;            // 2 bytes: Bitwise packed flags
+  _reserved: ushort;        // 2 bytes: Future expansion
+}
+
+// Order book level data for L2 snapshots
+table Level {
+  price: ulong;             // 8 bytes: Fixed-point price
+  quantity: ulong;          // 8 bytes: Fixed-point quantity
+  order_count: uint;        // 4 bytes: Number of orders at this level
+  timestamp_ns: long;       // 8 bytes: Last update time
+}
+
+// Full order book snapshot
+table OrderBookSnapshot {
+  symbol: string;
+  timestamp_ns: long;
+  bids: [Level];
+  asks: [Level];
+  sequence_id: ulong;
+  checksum: uint;
+}
+
+// Incremental order book update
+table OrderBookUpdate {
+  symbol: string;
+  timestamp_ns: long;
+  sequence_id: ulong;
+  prev_sequence_id: ulong;
+  bids_added: [Level];
+  bids_removed: [ulong];    // Price levels removed
+  asks_added: [Level];
+  asks_removed: [ulong];    // Price levels removed
+  is_snapshot: bool;
+}
+
+// Market depth statistics
+table DepthStats {
+  symbol: string;
+  timestamp_ns: long;
+  bid_depth_5: ulong;       // Total bid quantity top 5 levels
+  ask_depth_5: ulong;       // Total ask quantity top 5 levels
+  bid_depth_10: ulong;
+  ask_depth_10: ulong;
+  bid_depth_total: ulong;
+  ask_depth_total: ulong;
+  imbalance: float;         // (bid - ask) / (bid + ask)
+  vwap_bid: ulong;          // Volume-weighted bid price
+  vwap_ask: ulong;          // Volume-weighted ask price
+}
+
+// Trading signal with microstructure context
+table TradingSignal {
+  symbol: string;
+  timestamp_ns: long;
+  signal_type: SignalType;
+  direction: Direction;
+  strength: float;          // -1.0 to 1.0
+  confidence: float;        // 0.0 to 1.0
+  target_price: ulong;
+  stop_loss: ulong;
+  position_size: ulong;
+  ttl_ns: long;             // Time-to-live for signal
+  source_models: [string];  // Models contributing to signal
+  microstructure_score: float;
+  toxicity_level: float;
+}
+
+// Execution order for OMS
+table ExecutionOrder {
+  order_id: string;
+  signal_id: string;
+  symbol: string;
+  timestamp_ns: long;
+  side: Side;
+  order_type: OrderType;
+  quantity: ulong;
+  limit_price: ulong;
+  stop_price: ulong;
+  time_in_force: TimeInForce;
+  post_only: bool;
+  reduce_only: bool;
+  client_order_id: string;
+  strategy_id: string;
+  priority: uint;
+}
+
+// Execution report from exchange
+table ExecutionReport {
+  order_id: string;
+  client_order_id: string;
+  symbol: string;
+  timestamp_ns: long;
+  exec_type: ExecType;
+  order_status: OrderStatus;
+  side: Side;
+  order_type: OrderType;
+  quantity: ulong;
+  filled_quantity: ulong;
+  remaining_quantity: ulong;
+  average_price: ulong;
+  last_filled_price: ulong;
+  last_filled_quantity: ulong;
+  commission: ulong;
+  commission_asset: string;
+  trade_id: ulong;
+  execution_id: string;
+  reject_reason: string;
+}
+
+// Risk metrics snapshot
+table RiskMetrics {
+  timestamp_ns: long;
+  total_exposure: ulong;
+  net_exposure: ulong;
+  var_95: ulong;
+  var_99: ulong;
+  max_drawdown: ulong;
+  current_pnl: long;
+  realized_pnl: long;
+  unrealized_pnl: long;
+  sharpe_ratio: float;
+  leverage: float;
+  margin_used: ulong;
+  margin_available: ulong;
+  position_count: uint;
+  breach_flags: uint;       // Bitwise risk breach indicators
+}
+
+// System health and performance metrics
+table SystemHealth {
+  timestamp_ns: long;
+  cpu_usage: float;
+  memory_used: ulong;
+  memory_total: ulong;
+  network_latency_ns: long;
+  exchange_latency_ns: long;
+  message_queue_depth: uint;
+  gc_pause_ns: long;
+  serialization_overhead_ns: long;
+  deserialization_overhead_ns: long;
+  error_count: uint;
+  warning_count: uint;
+}
+
+// Enumerations for type safety
+enum Side : byte {
+  Unknown = 0,
+  Buy = 1,
+  Sell = 2
+}
+
+enum OrderType : byte {
+  Unknown = 0,
+  Market = 1,
+  Limit = 2,
+  StopLoss = 3,
+  StopLimit = 4,
+  TakeProfit = 5,
+  TrailingStop = 6
+}
+
+enum SignalType : byte {
+  Unknown = 0,
+  Momentum = 1,
+  MeanReversion = 2,
+  Arbitrage = 3,
+  MarketMaking = 4,
+  LiquidityDetection = 5,
+  SpoofingAlert = 6
+}
+
+enum Direction : byte {
+  Neutral = 0,
+  Long = 1,
+  Short = 2
+}
+
+enum TimeInForce : byte {
+  GTC = 0,  // Good Till Cancel
+  IOC = 1,  // Immediate Or Cancel
+  FOK = 2,  // Fill Or Kill
+  GTD = 3,  // Good Till Date
+  DAY = 4   // Day Order
+}
+
+enum ExecType : byte {
+  New = 0,
+  PartialFill = 1,
+  Fill = 2,
+  Cancelled = 3,
+  Rejected = 4,
+  Replaced = 5,
+  Expired = 6
+}
+
+enum OrderStatus : byte {
+  New = 0,
+  PartiallyFilled = 1,
+  Filled = 2,
+  Cancelled = 3,
+  PendingCancel = 4,
+  Rejected = 5,
+  Expired = 6
+}
+
+// Root objects for direct access
+root_table TickBatch;
+root_table OrderBookSnapshot;
+root_table OrderBookUpdate;
+root_table DepthStats;
+root_table TradingSignal;
+root_table ExecutionOrder;
+root_table ExecutionReport;
+root_table RiskMetrics;
+root_table SystemHealth;
+
+// File identification and versioning
+file_identifier "ZAIDTB";
+file_extension ".ztb";
