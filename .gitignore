@@ -2,9 +2,9 @@
 # Compiled and build artifacts
 *.pyc
 __pycache__/
-*.rs.bk
 *.o
 *.obj
+*.class
 *.exe
 *.dll
 *.so
@@ -15,9 +15,10 @@ __pycache__/
 .venv/
 venv/
 node_modules/
-target/
 .mypy_cache/
 .pytest_cache/
+target/
+.gradle/
 
 # Logs and temp files
 *.log
@@ -34,12 +35,12 @@ target/
 .vscode/
 .idea/
 
-# Coverage reports
+# Coverage
 coverage/
 htmlcov/
 .coverage
 
-# OS generated files
+# System files
 .DS_Store
 Thumbs.db
 ```
