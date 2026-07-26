@@ -5,45 +5,41 @@ __pycache__/
 *.rs.bk
 *.o
 *.obj
-*.exe
-*.dll
 *.so
-*.a
-*.out
+*.dll
+*.exe
 
 # Dependencies
 .venv/
 venv/
-node_modules/
-target/
-.mypy_cache/
-.pytest_cache/
-.julia/
-zig-cache/
+.env
+.env.local
+*.env.*
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
-*.swo
-
-# Environment
-.env
-.env.local
-*.env.*
 
 # Editors
 .vscode/
 .idea/
-*.swp
-*.swo
 
 # Coverage
+.coverage
 coverage/
 htmlcov/
-.coverage
 
-# System
-.DS_Store
-Thumbs.db
+# Rust specific
+target/
+Cargo.lock
+
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+.PyInstaller/
 ```
