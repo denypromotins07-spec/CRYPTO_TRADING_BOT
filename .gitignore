@@ -18,8 +18,7 @@ node_modules/
 target/
 .mypy_cache/
 .pytest_cache/
-.julia/
-zig*/
+.coverage
 
 # Logs and temp files
 *.log
@@ -36,13 +35,14 @@ zig*/
 .vscode/
 .idea/
 
-# Coverage
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
 coverage/
 htmlcov/
-.coverage
 
-# Build systems
-build/
-dist/
-.gradle/
+# Rust specific
+Cargo.lock
 ```
