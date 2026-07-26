@@ -5,11 +5,9 @@ __pycache__/
 *.rs.bk
 *.o
 *.obj
-*.exe
-*.dll
 *.so
-*.a
-*.out
+*.dll
+*.exe
 
 # Dependencies
 .venv/
@@ -18,7 +16,6 @@ node_modules/
 target/
 .mypy_cache/
 .pytest_cache/
-.coverage
 
 # Logs and temp files
 *.log
@@ -29,20 +26,18 @@ target/
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
 # Editors
 .vscode/
 .idea/
 
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Coverage reports
+# Coverage
 coverage/
 htmlcov/
+.coverage
 
-# Rust specific
-Cargo.lock
+# System
+.DS_Store
+Thumbs.db
 ```
