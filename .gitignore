@@ -1,34 +1,54 @@
-```
-# Compiled Python files
+```rust
+# Compiled and build artifacts
 *.pyc
 __pycache__/
+*.o
+*.obj
+*.rs.bk
+*.pyd
+*.so
+*.dll
+*.exe
+*.out
 
-# Rust compilation artifacts
-**/*.rs.bk
-target/
-
-# Logs
-*.log
-
-# Environment variables
+# Dependencies
+venv/
+.venv/
 .env
 .env.local
 *.env.*
 
-# IDE files
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Dependencies
-node_modules/
-venv/
-.venv/
-.mypy_cache/
-.pytest_cache/
-
-# Build artifacts
+# Build systems
+target/
 build/
 dist/
+*.egg-info/
+
+# Python specific
+*.pyc
+__pycache__/
+.Python
+*.pyo
+*.pyd
+.coverage
+htmlcov/
+.coverage.*
+.pytest_cache/
+.mypy_cache/
+
+# Rust specific
+Cargo.lock
+*.lock
 ```
