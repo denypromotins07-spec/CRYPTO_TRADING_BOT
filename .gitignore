@@ -1,21 +1,44 @@
 ```
-# Compiled Python files
+# Compiled and build artifacts
 *.pyc
 __pycache__/
+*.o
+*.obj
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
 
-# Rust compilation artifacts
+# Dependencies
+.venv/
+venv/
+node_modules/
+.mypy_cache/
+.pytest_cache/
 target/
+.gradle/
 
-# Logs
+# Logs and temp files
 *.log
+*.tmp
+*.swp
+*.swo
 
-# Environment files
+# Environment
 .env
 .env.local
 *.env.*
 
-# Dependencies
-node_modules/
-venv/
-.venv/
+# Editors
+.vscode/
+.idea/
+
+# Build and distribution
+dist/
+build/
+coverage/
+htmlcov/
+.coverage
 ```
