@@ -1,47 +1,34 @@
 ```
-# Compiled and build artifacts
+# Compiled Python files
 *.pyc
 __pycache__/
-*.rs.bk
-*.o
-*.obj
-*.exe
-*.dll
-*.so
-*.a
-*.out
 
-# Dependencies
-.venv/
-venv/
-node_modules/
+# Rust compilation artifacts
+**/*.rs.bk
 target/
-.mypy_cache/
-.pytest_cache/
-.julia/
-.zig/
 
-# Logs and temp files
+# Logs
 *.log
-*.tmp
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# IDE files
+.vscode/
+.idea/
 *.swp
 *.swo
 
-# Environment
-.env
-.env.local
-.env.*
+# Dependencies
+node_modules/
+venv/
+.venv/
+.mypy_cache/
+.pytest_cache/
 
-# Editors
-.vscode/
-.idea/
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# System files
-.DS_Store
-Thumbs.db
+# Build artifacts
+build/
+dist/
 ```
